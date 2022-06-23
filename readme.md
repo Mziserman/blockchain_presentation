@@ -2,6 +2,8 @@
 ---
 # Registre
 
+OPEN WITH https://github.com/maaslalani/slides
+
 ---
 # Registre
 ## Protocol
@@ -68,7 +70,7 @@
 # Registre
 ## Désavantages
 - Basé sur la confiance :
-  - On ne vérifie pas que l'émetteur a l'autorisation de créer la dette  
+  - On ne vérifie pas que l'émetteur a l'autorisation de créer la dette
   - On se fait assez confiance pour que tout le monde rembourse a la fin du mois
 - Chaque transactions doivent être communiquées à tout le monde
 ---
@@ -99,7 +101,7 @@
 PK: Public key
 SK: Secret key
 ```
-- Un couple de clés publique/privée permet de signer et de vérifier les signature : 
+- Un couple de clés publique/privée permet de signer et de vérifier les signature :
 ```bash
 sign(data, SK) => signature
 verify(data, signature, PK) => bool
@@ -114,7 +116,7 @@ verify(data, signature, PK) => bool
 #### Public/Private keys
 ##### Implementation
 - Chaque utilisateur du registre crée un couple de clé publique/clé privée et rend sa clé publique accessible aux autres utilisateurs
-- On rajoute deux informations aux requêtes : 
+- On rajoute deux informations aux requêtes :
   - La signature du débiteur
   - Un id unique (qui rend la donnée des transactions uniques permettant d'éviter a un autre membre de dupliquer la transaction et d'avoir une signature valide)
 
@@ -152,7 +154,7 @@ verify(data, signature, PK) => bool
 ## Solutions
 ### Empêcher les utilisateur de manquer le remboursement
 #### Lifen Coin
-- Un meilleur moyen de s'assurer que les débiteur remboursent leur créditeur est d'avoir une monnaie interne au registre. 
+- Un meilleur moyen de s'assurer que les débiteur remboursent leur créditeur est d'avoir une monnaie interne au registre.
 - Au lieu d'enregistrer les dettes, le registres enregistre les transactions en monnaie interne.
 - Le Lifen Coin est échangeable à un taux de 1LC pour 0.01€ dans les deux sens
 - La première transaction de chaque utilisateurs du registre est le buy-in
@@ -168,7 +170,7 @@ verify(data, signature, PK) => bool
                  │  from: 'bank',        │ <- from bank = buy in
                  │  to: 'Arthur',        │
                  │  amount: 50_00,       │ <- Arthur a acheté 50€ de Lifen Coin
-                 │  signature: 10110101  │ 
+                 │  signature: 10110101  │
                  │}                      │
                  └───────────────────────┘
 ```
@@ -204,7 +206,7 @@ verify(data, signature, PK) => bool
   - ~~On ne vérifie pas que l'émetteur a l'autorisation de créer la dette~~
   - ~~On se fait assez confiance pour que tout le monde rembourse a la fin du mois~~
 - Chaque transactions doivent être communiquées à tout le monde
-  - pas scalable 
+  - pas scalable
   - les transactions dépendent de l'ordre et les utilisateurs n'ont pas de moyen facile de savoir que ils ont le même ordre que les autres
   - toujours basé sur la confiance, mais plus qu'un seul point of failure (la banque)
 ---
@@ -225,7 +227,7 @@ verify(data, signature, PK) => bool
   - un nonce est un nombre qui est ajouté au block et qui fait que le hash du block commence par un certain nombre de 0s
 - Le seul moyen de trouver le nonce est de brute-force (essayer avec 1, puis 2, puis 3, puis 4, etc.)
 - La première personne qui trouve un nonce générant un hash commençant par le bon nombre de 0 partage son block au reste du registre.
-- C'était difficile pour lui de trouver le nonce, mais pour tous les autres utilisateurs, ils ont juste à verifier que le hash du block commence par le bon nombre de 0 
+- C'était difficile pour lui de trouver le nonce, mais pour tous les autres utilisateurs, ils ont juste à verifier que le hash du block commence par le bon nombre de 0
 - L'interêt de fournir ce travail est que la première transaction du bloque est une récompense de 100 LC a l'utilisateur qui a créé le bloque
 
 ```
@@ -238,7 +240,7 @@ verify(data, signature, PK) => bool
 │...                         │
 │TX 100                      │
 └─────────────┬──────────────┘
-              │ HASH               
+              │ HASH
 ┌─────────────▼──────────────┐
 │0000000000000011100110101001│
 └────────────────────────────┘
@@ -273,7 +275,7 @@ verify(data, signature, PK) => bool
   - il a le hash de son parent
   - le hash du block commence par dix 0
   - (il est sur la chaine la plus longue)
-  
+
 ---
 # Registre
 ## Solutions
@@ -322,7 +324,7 @@ verify(data, signature, PK) => bool
 
 ---
 # Registre
-On a inventé un registre 
+On a inventé un registre
 - décentralisé (pas de banque qui valide ou non nos transactions)
 - sans confiance (tous les membres ont intérêt à ce comporter honorablement (a peu pré))
 - immuable
@@ -336,12 +338,11 @@ On a inventé un registre
   - Peut être qu'ils ne valent rien, mais ils ne sont pas plus irréels que n'importe quelle monnaie. Une monnaie ne fonctionne que temps que tout le monde accepte sa valeur. Si on perd la confiance, la monnaie n'a plus de valeur. C'est un peu ce qui arrive aux crypto en ce moment d'ailleurs.
 - Débit
   - En fonction de la difficulté de la proof of work (nombre de 0) et du nombre de transaction par block, le debit peut être plus ou moins limité, mais visa sera probablement toujours plus efficace
-  
+
 ---
 # Refs
 - facile (20min) : https://www.youtube.com/watch?v=bBC-nXj3Ng4
 - mit (20h) : https://www.youtube.com/watch?v=EH6vE97qIP4&list=PLUl4u3cNGP63UUkfL0onkxF6MYgVa04Fn
 - Satoshi's paper : https://bitcoin.org/bitcoin.pdf
-  
-  
-  
+
+
